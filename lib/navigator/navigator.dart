@@ -18,7 +18,7 @@ class _BottomNavigatorState extends State<BottomNavigator> {
       _Selectedindex=index;
     });
   }
-  List<Widget> _body= [
+  List<Widget> _body=[
    HomePage(),
    Search(),
    Library(),
