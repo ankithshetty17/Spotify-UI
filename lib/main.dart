@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.white10,
           type:BottomNavigationBarType.fixed,
           selectedLabelStyle: TextStyle(
-            fontSize: 15
+            fontSize: 12
           ),
            unselectedLabelStyle: TextStyle(
             fontSize: 12
