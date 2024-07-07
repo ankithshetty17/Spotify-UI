@@ -8,6 +8,25 @@ class AlbumView extends StatefulWidget {
 }
 
 class _AlbumViewState extends State<AlbumView> {
+  late ScrollController scrollController;
+  double imagesize=0;
+  double initialsize=240;
+  @override
+  void initState() {
+    imagesize=initialsize;
+    scrollController=ScrollController()
+    ..addListener(() {
+         imagesize=initialsize-scrollController.offset;
+         print(imagesize);
+         if(imagesize>0 && imagesize< initialsize){
+          setState(() {
+            
+          });
+         }
+     });
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -17,6 +36,7 @@ class _AlbumViewState extends State<AlbumView> {
     ),
     SafeArea(child:
     SingleChildScrollView(
+      controller: scrollController,
       physics:const  BouncingScrollPhysics(),
       child: Column(
         children:[
@@ -54,8 +74,8 @@ class _AlbumViewState extends State<AlbumView> {
               ),
               child:
             Image.asset('assets/images/album2.jpg',
-            height: MediaQuery.of(context).size.width-120,
-            width: MediaQuery.of(context).size.width-120,
+            height: imagesize,
+            width:imagesize,
             fit: BoxFit.cover,
             ),
             ),
@@ -76,7 +96,49 @@ class _AlbumViewState extends State<AlbumView> {
               ],
             ),
             Text('23,40,38,73,856 Likes  5h 3m',
-            style: Theme.of(context).textTheme.caption,)
+            style: Theme.of(context).textTheme.caption,),
+            SizedBox(height: 16),
+            Stack(
+             
+              clipBehavior: Clip.none,
+              children: [
+            Row(children: [
+              Icon(Icons.favorite,color: Colors.white,),
+              SizedBox(width: 5,),
+              Icon(Icons.more_horiz,color: Colors.white,)
+            ],),
+            Positioned(
+              right: 0,
+              bottom: 0,
+              child:Stack(
+                alignment: Alignment.bottomRight,
+                children: [
+              
+              Container(
+                width: 64,
+                height: 64,
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(Icons.play_arrow,size: 38,),
+              ) ,
+
+               Container(
+                width: 25,
+                height: 25,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(Icons.shuffle_rounded,size: 18,color: Colors.black,),
+              ) ,
+                ],
+              ),
+              )
+            ],
+            ),
+      
            ],
            ),
            ),
